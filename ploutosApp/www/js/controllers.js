@@ -71,6 +71,26 @@ angular.module('starter.controllers', [])
 
 
 .controller('ChartCtrl', function($scope, $rootScope, $http, $state, $ionicModal) {
+            console.log("dfdfd");
+
+            
+            $scope.doRefresh = function() {
+            
+            console.log("JOGN");
+            
+            $http.get('/new-items')
+            .success(function(newItems) {
+                     $scope.items = newItems;
+                     })
+            .finally(function() {
+                     // Stop the ion-refresher from spinning
+                     $scope.$broadcast('scroll.refreshComplete');
+                     })};
+            
+            
+            
+            
+            
             $scope.userName = localStorage.getItem('username');
             
             
@@ -268,6 +288,7 @@ angular.module('starter.controllers', [])
 //
 
 .controller('MenuCtrl', function($scope, $http, $ionicModal) {
+
             $scope.alerts = [
                              { title: 'CIBC', due: 'due in 5 days',id: 1 },
                              { title: 'RBC',due:'due in 5 days' , id: 2 }
@@ -589,6 +610,40 @@ angular.module('starter.controllers', [])
                               
                               ];
             
+            })
+
+.controller('MyController', function($scope, $http) {
+            $scope.doRefresh = function() {
+            
+            
+            $http.get(url).success(function(data, status, headers, config){
+                                   
+                                   $scope.pos = data.income;
+                                   $scope.neg = data.expenditure;
+                                   
+                                   localStorage.setItem('currentExpense',data.expenditure);
+                                   
+                                   var pos_perc = 100 - parseInt(data.percent);
+                                   
+                                   $scope.pos_percent = "width:" + pos_perc + "%;";
+                                   $scope.neg_percent = "width:" + parseInt(data.percent) + "%;";
+                                   
+                                   
+                                   $scope.month = data.month;
+                                   
+                                   });
+            
+            
+            
+            $http.get('/new-items')
+            .success(function(newItems) {
+                     $scope.items = newItems;
+                     })
+            .finally(function() {
+                     // Stop the ion-refresher from spinning
+                     $scope.$broadcast('scroll.refreshComplete');
+                     });
+            };
             })
 
 .controller('AlertCtrl', function($scope, $stateParams) {
