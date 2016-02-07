@@ -71,7 +71,6 @@ angular.module('starter.controllers', [])
 
 
 .controller('ChartCtrl', function($scope, $rootScope, $http, $state, $ionicModal) {
-            console.log("dfdfd");
 
             
             $scope.doRefresh = function() {
@@ -155,8 +154,6 @@ angular.module('starter.controllers', [])
             var adviceUrl = "https://plutus-matthew9012.c9users.io/recco/promotion";
             
             $http.get(adviceUrl).success(function(data, status, headers, config){
-                                         console.log(status);
-                                         console.log(data);
                                          
                                          $scope.advices = data;
                                          
@@ -189,14 +186,12 @@ angular.module('starter.controllers', [])
             
             $http.get(goalUrl).success(function(data, status, headers, config){
                                        
-                                       console.log(data);
                                        
                                        
                                        var keys = Object.keys(data);
                                        
                                        $scope.goals = [data[keys[0]], data[keys[1]]];
                                        
-                                       console.log(data);
                                        
                                        });
             
@@ -224,7 +219,6 @@ angular.module('starter.controllers', [])
             
             
             $http.get(friendsUrl).success(function(data, status, headers, config){
-                                          console.log(data);
                                           
                                           $scope.accounts = data;
                                           
@@ -292,7 +286,7 @@ angular.module('starter.controllers', [])
 //            $scope.onRelease = function() {
 //            
 //            console.log($scope.user.value)
-//            
+//
 //            
 //            var budgetUrl ="https://plutus-matthew9012.c9users.io/money/set_budget?sessionid=" + sessionid + "&budget=" + $scope.user.value;
 //            
@@ -305,6 +299,9 @@ angular.module('starter.controllers', [])
 //
 
 .controller('MenuCtrl', function($scope, $http, $ionicModal) {
+            
+            
+            $scope.trends =   [{title:"Credit Card Payment",price:"1000"},{title:"Housing",price:"700"},{title:"Entertaiment",price: "80"},{title:"Movies&DVD",price: "70"},{title:"Income",price: "3000"},{title:"Grocery",price: "450"},{title:"Saving",price: "400"}];
 
             $scope.alerts = [
                              { title: 'CIBC', due: 'due in 5 days',id: 1 },
@@ -332,7 +329,6 @@ angular.module('starter.controllers', [])
             
             //FRIENDS
             $http.get(friendsUrl).success(function(data, status, headers, config){
-                                          console.log(data);
                                           
                                           $scope.friends = data;
                                           
@@ -345,7 +341,6 @@ angular.module('starter.controllers', [])
             
             $http.get(myPointsUrl).success(function(data, status, headers, config){
                                            
-                                           console.log(data);
                                            
                                            $scope.data.score = data;
                                            
@@ -360,7 +355,6 @@ angular.module('starter.controllers', [])
             
             
             $http.get(url).success(function(data, status, headers, config){
-                                   console.log(data)
                                    
                                    $scope.accounts = data;
                                    
@@ -432,7 +426,6 @@ angular.module('starter.controllers', [])
             
             var us = 0;
             $http.get(catUrl).success(function(data, status, headers, config){
-                                      console.log(data);
                                       
                                       us = parseInt(data);
                                       localStorage.setItem('monthlyBudget', us);
@@ -474,7 +467,8 @@ angular.module('starter.controllers', [])
             
             
             $http.post(budgetUrl);
-            
+            localStorage.setItem('monthlyBudget', $scope.user.value);
+
             };
             
             
@@ -505,7 +499,6 @@ angular.module('starter.controllers', [])
             $scope.login = function() {
             console.log("LOGIN user: " + $scope.data.username + " - PW: " + $scope.data.password);
             var url ="http://plutus-matthew9012.c9users.io/auth?uname=" + $scope.data.username + "&pword="  + $scope.data.password;
-            console.log(url);
             
             
             var tokenUrl = "https://plutus-matthew9012.c9users.io/initiateChat?sessionid=";
@@ -513,7 +506,6 @@ angular.module('starter.controllers', [])
             localStorage.setItem('username',$scope.data.username);
             
             $http.post(url).success(function(data) {
-                                    console.log(data);
                                     
                                     
                                     localStorage.setItem('sessionid',data);
@@ -535,7 +527,6 @@ angular.module('starter.controllers', [])
 
 
 .controller('BrowseCtrl',function($scope,$state){
-            console.log("We are browsing");
             $scope.playlists = [
                                 { title: 'One', id: 1 },
                                 { title: 'Two', id: 2 },
@@ -582,7 +573,6 @@ angular.module('starter.controllers', [])
             
             $http.get(dialUrl).success(function(data, status){
                                        
-                                       console.log(data);
                                        
                                        var watsonMessage = [{ content: '<p>' + data +'</p>'}];
                                        nextMessage = watsonMessage[0];
@@ -621,9 +611,7 @@ angular.module('starter.controllers', [])
             var friendUrl =" https://plutus-matthew9012.c9users.io/social/userinfo?uid=" + $stateParams.friendId;
             
             $http.get(friendUrl).success(function(data, status, headers, config){
-                                         console.log(status);
 
-                                         console.log(data);
                                          
                                          $scope.friend = data;
                                           //$scope.accounts = data;

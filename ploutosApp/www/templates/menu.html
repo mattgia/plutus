@@ -76,17 +76,17 @@
                 <ion-item menu-close  class="sidebar-cell">
                     <img style="display:inline;" src="img/bill.png" height="25" width="25"/>
                     
-                    <h3>Upcoming Bills</h3>
+                    <h3 style="display:inline;">Upcoming Bills</h3>
                     <ion-list class="sidebar-alerts">
-                        <ion-item ng-repeat="account in accounts" href="#/app/accounts/{{account.id}}" class="sidebar-alert">
+                        <ion-item ng-repeat="account in accounts" class="sidebar-alert">
                             {{account.title}}
                         </ion-item>
                     </ion-list>
                 </ion-item>
                 
-<!--                <ion-item ng-click="showModal()" menu-close class="sidebar-cell" href="#/app/budget">-->
-                    <ion-item ng-click="openModal()" menu-close class="sidebar-cell">
-
+                <!--                <ion-item ng-click="showModal()" menu-close class="sidebar-cell" href="#/app/budget">-->
+                <ion-item ng-click="openModal()" menu-close class="sidebar-cell">
+                    
                     <h3>Remaining budget</h3>
                     <div class="progress budget-bar" >
                         <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
@@ -138,24 +138,27 @@
                         <div class="col">
                             
                             <img src="img/a2.png" height="40" width="40"/>
-            
-                        </div>
-
-                            <div class="col">
-                                
-                                <img src="img/a3.png" height="40" width="40"/>
-                            </div>
                             
                         </div>
-                        </ion-item>
+                        
+                        <div class="col">
+                            
+                            <img src="img/a3.png" height="40" width="40"/>
+                        </div>
+                        
+                    </div>
+                </ion-item>
                 
                 <ion-item menu-close>
                     <h3>Community Trends</h3>
                     <ion-list class="sidebar-alerts">
-                        <p style="height: 100px; width: 200px; text-aligh: center">
-                        The lorem ipsum text is typically a scrambled section of De finibus bonorum et malorum, a 1st-century BC Latin text by Cicero, with words altered, added, and removed to make it nonsensical, improper Latin.
-                        </p>
-                    </ion-list>
+                        <div class="card">
+
+                            <div class="item item-text-wrap" style="text-align: left;" ng-repeat="item in trends">
+                                {{item.title}}
+                                <p>{{item.price}}</p>
+                            </div>
+                            </ion-list>
                 </ion-item>
                 
                 
