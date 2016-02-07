@@ -72,12 +72,9 @@ angular.module('starter.controllers', [])
 
 .controller('ChartCtrl', function($scope, $rootScope, $http, $state, $ionicModal) {
             $scope.userName = localStorage.getItem('username');
-
             
-            $scope.goals = [
-                            { title: "New Bike", id: 1 },
-                            { title: "New House", id: 2 }
-                            ];
+            
+            
             
             
             
@@ -111,6 +108,8 @@ angular.module('starter.controllers', [])
                                    
                                    $scope.pos = data.income;
                                    $scope.neg = data.expenditure;
+                                   
+                                   localStorage.setItem('currentExpense',data.expenditure);
                                    
                                    var pos_perc = 100 - parseInt(data.percent);
                                    
@@ -156,16 +155,21 @@ angular.module('starter.controllers', [])
             
             
             
-            
-            
             var goalUrl ="https://plutus-matthew9012.c9users.io/goals/goalList";
             
             $http.get(goalUrl).success(function(data, status, headers, config){
-                                   
+                                       
                                        console.log(data);
-                                   
-                                   });
-
+                                       
+                                       
+                                       var keys = Object.keys(data);
+                                       
+                                       $scope.goals = [data[keys[0]], data[keys[1]]];
+                                       
+                                       console.log(data);
+                                       
+                                       });
+            
             
             
             })
@@ -173,7 +177,7 @@ angular.module('starter.controllers', [])
 
 .controller('FriendsCtrl', function($scope) {
             
-            https://plutus-matthew9012.c9users.io/social/getUsers
+            //            https://plutus-matthew9012.c9users.io/social/getUsers
             
             
             var sessionid = localStorage.getItem('sessionid');
@@ -186,19 +190,6 @@ angular.module('starter.controllers', [])
                                           console.log(data);
                                           
                                           $scope.accounts = data;
-                                          
-                                          
-                                          
-                                          
-                                          
-                                          
-                                          //
-                                          //
-                                          //                                   var sum = 0;
-                                          //                                   angular.forEach(data, function(item){
-                                          //                                                   sum += parseInt(item.balance);
-                                          //                                                   })
-                                          //                                   $scope.sum = sum;
                                           
                                           });
             
@@ -216,64 +207,65 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('BudgetCtrl', function($scope, $http) {
-            $scope.data = {};
-            
-            var sessionid = localStorage.getItem('sessionid');
-            
-            
-            
-            
-            var catUrl ="https://plutus-matthew9012.c9users.io/money/get_budget?sessionid=" + sessionid;
-            
-            
-            var us = 0;
-            $http.get(catUrl).success(function(data, status, headers, config){
-                                      console.log(data);
-                                      
-                                      us = parseInt(data);
-                                      
-                                      
-                                      });
-            
-            $scope.user= {
-            min:0,
-            max:2000,
-            value:us
-            }
-            
-            $scope.user.value = us;
-            
-            
-            var average = 900;
-            
-            
-            
-            var net = parseInt(localStorage.getItem('net-worth'));
-            var savings = 400;
-            
-            var projected_net = parseInt(savings)*12 + parseInt(net);
-            
-            $scope.data.average = average;
-            $scope.data.affordable = 1000;
-            $scope.data.net = net;
-            
-            
-            
-            $scope.onRelease = function() {
-            
-            console.log($scope.user.value)
-            
-            
-            var budgetUrl ="https://plutus-matthew9012.c9users.io/money/set_budget?sessionid=" + sessionid + "&budget=" + $scope.user.value;
-            
-            
-            $http.post(budgetUrl);
-            
-            };
-            
-            })
-
+//.controller('BudgetCtrl', function($scope, $http) {
+//            $scope.data = {};
+//            
+//            var sessionid = localStorage.getItem('sessionid');
+//            
+//            
+//            
+//            
+//            var catUrl ="https://plutus-matthew9012.c9users.io/money/get_budget?sessionid=" + sessionid;
+//            
+//            
+//            var us = 0;
+//            $http.get(catUrl).success(function(data, status, headers, config){
+//                                      console.log(data);
+//                                      
+//                                      us = parseInt(data);
+//                                      
+//                                      localStorage.setItem('monthlyBudget', us);
+//                                      
+//                                      });
+//            
+//            $scope.user= {
+//            min:0,
+//            max:2000,
+//            value:us
+//            }
+//            
+//            $scope.user.value = us;
+//            
+//            
+//            var average = 900;
+//            
+//            
+//            
+//            var net = parseInt(localStorage.getItem('net-worth'));
+//            var savings = 400;
+//            
+//            var projected_net = parseInt(savings)*12 + parseInt(net);
+//            
+//            $scope.data.average = average;
+//            $scope.data.affordable = 1000;
+//            $scope.data.net = net;
+//            
+//            
+//            
+//            $scope.onRelease = function() {
+//            
+//            console.log($scope.user.value)
+//            
+//            
+//            var budgetUrl ="https://plutus-matthew9012.c9users.io/money/set_budget?sessionid=" + sessionid + "&budget=" + $scope.user.value;
+//            
+//            
+//            $http.post(budgetUrl);
+//            
+//            };
+//            
+//            })
+//
 
 .controller('MenuCtrl', function($scope, $http, $ionicModal) {
             $scope.alerts = [
@@ -294,6 +286,8 @@ angular.module('starter.controllers', [])
             
             
             
+            var sessionid = localStorage.getItem('sessionid');
+            
             
             var friendsUrl ="https://plutus-matthew9012.c9users.io/social/getUsers";
             
@@ -304,13 +298,24 @@ angular.module('starter.controllers', [])
                                           
                                           $scope.friends = data;
                                           
+                                          console.log(data[localStorage.getItem('username')]);
                                           
                                           });
             
             
+            var myPointsUrl ="https://plutus-matthew9012.c9users.io/social/getMyPoints?sessionid=" + sessionid;
+            
+            $http.get(myPointsUrl).success(function(data, status, headers, config){
+                                           
+                                           console.log(data);
+                                           
+                                           $scope.data.score = data;
+                                           
+                                           
+                                           });
             
             
-            var sessionid = localStorage.getItem('sessionid');
+            
             
             var url ="https://plutus-matthew9012.c9users.io/money/get_banks?sessionid=" + sessionid;
             
@@ -392,17 +397,19 @@ angular.module('starter.controllers', [])
                                       console.log(data);
                                       
                                       us = parseInt(data);
-                                      
+                                      localStorage.setItem('monthlyBudget', us);
                                       
                                       });
+            
+            var monthlyBudget = localStorage.getItem('monthlyBudget');
             
             $scope.user= {
             min:0,
             max:2000,
-            value:us
+            value: monthlyBudget
             }
             
-            $scope.user.value = us;
+            $scope.user.value = monthlyBudget;
             
             
             var average = 900;
@@ -431,6 +438,21 @@ angular.module('starter.controllers', [])
             $http.post(budgetUrl);
             
             };
+            
+            
+            var currentExpense = localStorage.getItem('currentExpense');
+            
+            console.log("bs");
+
+            console.log(currentExpense);
+            
+            var remBudget = (monthlyBudget - parseInt(currentExpense));
+            
+            console.log(remBudget);
+            
+            $scope.remainingBudget = remBudget;
+            
+
             
             
             
@@ -467,9 +489,9 @@ angular.module('starter.controllers', [])
             
             $http.get(tokenUrl + localStorage.getItem('sessionid'));
             
-
-
-
+            
+            
+            
             }})
 
 
@@ -493,20 +515,20 @@ angular.module('starter.controllers', [])
             var message = '<p>' + $scope.data.message +'</p>';
             
             
-//            var messageOptions = [
-//                                  { content: '<p>Yea, it\'s pretty sweet</p>' },
-//                                  { content: '<p>I think I like Ionic more than I like ice cream!</p>' },
-//                                  { content: '<p>Gee wiz, this is something special.</p>' },
-//                                  { content: '<p>Is this magic?</p>' },
-//                                  { content: '<p>Am I dreaming?</p>' },
-//                                  { content: '<p>Am I dreaming?</p>' },
-//                                  { content: '<p>Yea, it\'s pretty sweet</p>' },
-//                                  { content: '<p>I think I like Ionic more than I like ice cream!</p>' },
-//                                  ];
+            //            var messageOptions = [
+            //                                  { content: '<p>Yea, it\'s pretty sweet</p>' },
+            //                                  { content: '<p>I think I like Ionic more than I like ice cream!</p>' },
+            //                                  { content: '<p>Gee wiz, this is something special.</p>' },
+            //                                  { content: '<p>Is this magic?</p>' },
+            //                                  { content: '<p>Am I dreaming?</p>' },
+            //                                  { content: '<p>Am I dreaming?</p>' },
+            //                                  { content: '<p>Yea, it\'s pretty sweet</p>' },
+            //                                  { content: '<p>I think I like Ionic more than I like ice cream!</p>' },
+            //                                  ];
             
             
             var messageIter = 0;
-//            $scope.messages = messageOptions.slice(0, messageOptions.length);
+            //            $scope.messages = messageOptions.slice(0, messageOptions.length);
             
             
             $scope.messages = [];
@@ -519,19 +541,19 @@ angular.module('starter.controllers', [])
             $scope.messages.push(angular.extend({}, nextMessage));
             
             var dialUrl = "https://plutus-matthew9012.c9users.io/message?sessionid=" + localStorage.getItem('sessionid') +"&message=" + $scope.data.message;
-
+            
             $http.get(dialUrl).success(function(data, status){
-                                        
-                                        console.log(data);
-
-                                        var watsonMessage = [{ content: '<p>' + data +'</p>'}];
-                                        nextMessage = watsonMessage[0];
-                                        
-                                        $scope.messages.push(angular.extend({}, nextMessage));
-                                        
-                                        
-                                        
-                                        });
+                                       
+                                       console.log(data);
+                                       
+                                       var watsonMessage = [{ content: '<p>' + data +'</p>'}];
+                                       nextMessage = watsonMessage[0];
+                                       
+                                       $scope.messages.push(angular.extend({}, nextMessage));
+                                       
+                                       
+                                       
+                                       });
             
             // Update the scroll area and tell the frosted glass to redraw itself
             $ionicFrostedDelegate.update();

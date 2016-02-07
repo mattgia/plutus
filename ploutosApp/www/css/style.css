@@ -381,8 +381,8 @@ p.amount-saved {
     padding: 0;
 }
 body {
-    font-family: "Raleway";
-    
+/*    font-family: "Raleway";*/
+
     color: rgba(255,255,255, 0.83);
     
 }
@@ -395,13 +395,13 @@ p {
 h1, h2, h3, h4 {
     color: rgba(255,255,255, 0.83);
     font-weight: thin;
-    font-family: "Oswald";
+/*    font-family: "Oswald";*/
     letter-spacing: .025em;
 }
 
 
 .title {
-    font-family: "Raleway";
+/*    font-family: "Raleway";*/
 }
 
 .section {

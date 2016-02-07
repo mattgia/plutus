@@ -123,9 +123,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'chart.js', 'ionic.co
                url: '/achievements',
                views: {
                'menuContent': {
-               templateUrl: 'templates/achievements.html',
-               controller: 'AchievementsCtrl'
-               }
+               templateUrl: 'templates/achievements.html'               }
                }
                })
         

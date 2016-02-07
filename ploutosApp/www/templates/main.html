@@ -40,14 +40,14 @@
                 
                 <div class="col" ng-repeat="goal in goals">
                     
-                    <p>{{goal.title}}</p>
+                    <p>{{goal.statement}}</p>
                     
                     <canvas id="pie" class="chart chart-doughnut"
                         chart-data="data1" chart-labels="labels1">
                     </canvas>
                     
                     <div class="donut-inner">
-                        <h4>47k / 60k </h4>
+                        <h4>{{goal.percent}}% </h4>
                     </div>
                 </div>
                 
