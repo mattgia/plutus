@@ -67,19 +67,19 @@ def goalList(request):
        respond['resturant'] = {}
        respond['resturant']['statement'] = "Burn Calories, Save "
        respond['resturant']['percent'] = 0
-       respond['coffe_shops']['Number'] = str(resturant/4)
+       respond['resturant']['Number'] = str(resturant/4)
 
 
     if (amazon_count/yearly_income *100) > 10:
         respond['amazon_count'] = {}
         respond['amazon_count']['statement'] = "Reduce and recyle.Your Shopping average: "
         respond['amazon_count']['percent'] = 12
-        respond['coffe_shops']['Number'] = str(amazon_count/2)
+        respond['amazon_count']['Number'] = str(amazon_count/2)
     if (alcohol_count/yearly_income*100) > 2:
         respond['alcohol_count'] = {}
         respond['alcohol_count']['statement'] = "You may be a alcoholic. Avg"
-        respond['amazon_count']['percent'] = 0
-        respond['coffe_shops']['Number'] = str(alcohol_count/yearly_income)
+        respond['alcohol_count']['percent'] = 0
+        respond['alcohol_count']['Number'] = str(alcohol_count/yearly_income*100*2)
 
 
 

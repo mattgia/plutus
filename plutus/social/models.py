@@ -31,3 +31,4 @@ class Achievments(models.Model):
     
     title = models.CharField(max_length=30)
     points = models.IntegerField(default=0)
+    
