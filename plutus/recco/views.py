@@ -74,18 +74,32 @@ def recco(request):
         respond['tangerineCC'] = {}
         respond['tangerineCC']['statement'] = "You can save   with a Tangerine Credit Card"
         respond['tangerineCC']['link'] = 'https://www.tangerine.ca/'
-        respond['tangerineCC']['number'] = str(total_tag_saving)
+        respond['tangerine']['number'] = str(total_tag_saving)
     return HttpResponse(json.dumps(respond))
 
 def trend(request):
-    return JsonResponse(
-        {
-            "creditCardPayment": "1000",
-            "Housing": "700",
-            "Entertaiment": "80",
-            "Income": "3000",
-            "Movies&DVD": "70",
-            "Grocery": "450",
-            "Saving":"400"
-        }
-    )
+    respond = '{"item": [{"title":"creditCardPayment","price":"1000"}],[{"title":"Housing","price":"700"}]}'
+    
+    # respond['item1'] = {}
+    # respond['item1']['title'] ="creditCardPayment"
+    # respond['item1']['price']= 1000
+    # respond['item2'] = {}
+    # respond['item2']['title'] ="Housing"
+    # respond['item2']['price']= 700
+    # respond['item3'] = {}
+    # respond['item3']['title'] ="Entertaiment"
+    # respond['item3']['price']= 80
+    # respond['item4'] = {}
+    # respond['item4']['title'] ="Movies&DVD"
+    # respond['item4']['price']= 70
+    # respond['item4'] = {}
+    # respond['item4']['title'] ="Income"
+    # respond['item4']['price']= 3000
+    # respond['item4'] = {}
+    # respond['item4']['title'] ="Grocery"
+    # respond['item4']['price']= 450
+    # respond['item4'] = {}
+    # respond['item4']['title'] ="Saving"
+    # respond['item4']['price']= 400
+    return HttpResponse(respond)
+    

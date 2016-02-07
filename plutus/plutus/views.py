@@ -142,6 +142,37 @@ def initiateChat(request):
         ct.client_id = client_id
         ct.save()
         
+        """
+        profile_variables = {}
+        
+        profile_variables['client_id'] = client_id
+        profile_variables['name_values'] = {}
+        
+        profile_variables['name_values']['account1_name'] = "ayy lmao"
+        profile_variables['name_values']['account2_name'] = "ayy lmao"
+        profile_variables['name_values']['account3_name'] = "ayy lmao"
+        profile_variables['name_values']['account4_name'] = "ayy lmao"
+        profile_variables['name_values']['account5_name'] = "ayy lmao"
+        
+        profile_variables['name_values']['account1_balance'] = "ayy lmao"
+        profile_variables['name_values']['account2_balance'] = "ayy lmao"
+        profile_variables['name_values']['account3_balance'] = "ayy lmao"
+        profile_variables['name_values']['account4_balance'] = "ayy lmao"
+        profile_variables['name_values']['account5_balance'] = "ayy lmao"
+        
+        
+        profile_variables['name_values']['remaining_budget'] = "ayy lmao"
+        
+        profile_variables['name_values']['maximum_budget'] = "ayy lmao"
+        
+        profile_variables['name_values']['net_worth'] = "ayy lmao"
+        
+        j = json.dumps(profile_variables)
+        req = urllib2.Request('https://watson-api-explorer.mybluemix.net/dialog/api/v1/dialogs/'+ dialog_id +'/profile?')
+        req.add_header('Content-Type', 'application/json')
+
+        #response = urllib2.urlopen(req, json.dumps(profile_variables))
+        """
         
         return HttpResponse(status=200)
         
