@@ -76,16 +76,34 @@ angular.module('starter.controllers', [])
             
             $scope.doRefresh = function() {
             
-            console.log("JOGN");
             
-            $http.get('/new-items')
-            .success(function(newItems) {
-                     $scope.items = newItems;
-                     })
-            .finally(function() {
-                     // Stop the ion-refresher from spinning
-                     $scope.$broadcast('scroll.refreshComplete');
-                     })};
+            var friendsUrl ="https://plutus-matthew9012.c9users.io/social/getUsers";
+            $http.get(friendsUrl).success(function(data, status, headers, config){
+                                          
+                                          $scope.accounts = data;
+                                          
+                                          })
+            
+//            var url ="https://plutus-matthew9012.c9users.io/progressbar?sessionid=" + sessionid;
+//            
+//            $http.get(url).success(function(data, status, headers, config){
+//                                   
+//                                   $scope.pos = data.income;
+//                                   $scope.neg = data.expenditure;
+//                                   
+//                                   localStorage.setItem('currentExpense',data.expenditure);
+//                                   
+//                                   var pos_perc = 100 - parseInt(data.percent);
+//                                   
+//                                   $scope.pos_percent = "width:" + pos_perc + "%;";
+//                                   $scope.neg_percent = "width:" + parseInt(data.percent) + "%;";
+//                                   
+//                                   
+//                                   $scope.month = data.month;
+//                                   
+//                                   })
+            
+            };
             
             
             
@@ -97,20 +115,11 @@ angular.module('starter.controllers', [])
             
             
             
-            
-            $scope.labels1 = ["Download Sales", "Mail-Order Sales"];
-            $scope.data1 = [300, 100];
-            
-            $scope.labels2 = ["Download Sales", "Mail-Order Sales"];
-            $scope.data2 = [100, 400];
-            
-            $scope.labels3 = ["Download Sales", "Mail-Order Sales"];
-            $scope.data3 = [400, 50];
-            
+
+
             
             var sessionid = localStorage.getItem('sessionid');
             
-            var url ="https://plutus-matthew9012.c9users.io/progressbar?sessionid=" + sessionid;
             
             
             
@@ -123,7 +132,8 @@ angular.module('starter.controllers', [])
             };
             
             
-            
+            var url ="https://plutus-matthew9012.c9users.io/progressbar?sessionid=" + sessionid;
+
             $http.get(url).success(function(data, status, headers, config){
                                    
                                    $scope.pos = data.income;
@@ -191,6 +201,13 @@ angular.module('starter.controllers', [])
                                        });
             
             
+
+            
+            $scope.colours = ["#F9690E","#FDE3A7" ];
+            $scope.labels1 = ["Download Sales", "Mail-Order Sales"];
+            $scope.data1 = [20, 100];
+            
+
             
             })
 
@@ -586,22 +603,10 @@ angular.module('starter.controllers', [])
 .controller('PlaylistCtrl', function($scope, $stateParams) {
             })
 
-.controller('FriendCtrl', function($scope, $stateParams) {
-            //            $http.get(url).success(function(data, status, headers, config){
-            //                                   console.log(data);
-            //
-            //                                   $scope.pos = data.income;
-            //                                   $scope.neg = data.expenditure;
-            //
-            //                                   var pos_prog = 100 - parseInt(data.percent);
-            //
-            //                                   $scope.pos_progress = "width:" + pos_prog + "%;";
-            //                                   $scope.neg_progress = "width:" + data.percent + "%;";
-            //
-            //
-            //
-            //                                   });
+.controller('FriendCtrl', function($scope, $stateParams, $http) {
             
+            
+
             $scope.updates = [
                               { title: 'Friend got the badge!', id: 1 },
                               { title: 'Friend reached the goal!', id: 2 },
@@ -610,41 +615,25 @@ angular.module('starter.controllers', [])
                               
                               ];
             
+            
+            
+            
+            var friendUrl =" https://plutus-matthew9012.c9users.io/social/userinfo?uid=" + $stateParams.friendId;
+            
+            $http.get(friendUrl).success(function(data, status, headers, config){
+                                         console.log(status);
+
+                                         console.log(data);
+                                         
+                                         $scope.friend = data;
+                                          //$scope.accounts = data;
+                                          
+                                          })
+            
+            
             })
 
-.controller('MyController', function($scope, $http) {
-            $scope.doRefresh = function() {
-            
-            
-            $http.get(url).success(function(data, status, headers, config){
-                                   
-                                   $scope.pos = data.income;
-                                   $scope.neg = data.expenditure;
-                                   
-                                   localStorage.setItem('currentExpense',data.expenditure);
-                                   
-                                   var pos_perc = 100 - parseInt(data.percent);
-                                   
-                                   $scope.pos_percent = "width:" + pos_perc + "%;";
-                                   $scope.neg_percent = "width:" + parseInt(data.percent) + "%;";
-                                   
-                                   
-                                   $scope.month = data.month;
-                                   
-                                   });
-            
-            
-            
-            $http.get('/new-items')
-            .success(function(newItems) {
-                     $scope.items = newItems;
-                     })
-            .finally(function() {
-                     // Stop the ion-refresher from spinning
-                     $scope.$broadcast('scroll.refreshComplete');
-                     });
-            };
-            })
+
 
 .controller('AlertCtrl', function($scope, $stateParams) {
             

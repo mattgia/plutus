@@ -1,18 +1,12 @@
 <ion-view view-title="Home">
     
-    <ion-content ng-controller="ChartCtrl">
+
+    <ion-content>
+        
         <ion-refresher
             pulling-text="Pull to refresh..."
             on-refresh="doRefresh()">
         </ion-refresher>
-        <ion-list>
-            <ion-item ng-repeat="item in items"></ion-item>
-        </ion-list>
-    </ion-content>
-    
-    <ion-content>
-        
-        
         
         
         
@@ -55,15 +49,42 @@
                     
                     <p>{{goal.statement}}</p>
                     
-                    <canvas id="pie" class="chart chart-doughnut"
+                    <canvas colours="colours" id="pie" class="chart chart-doughnut"
                         chart-data="data1" chart-labels="labels1">
                     </canvas>
                     
                     <div class="donut-inner">
-                        <h4>{{goal.percent}}% </h4>
+                        <h4>20% </h4>
                     </div>
                 </div>
-                
+
+<!--<div class="col">-->
+<!--    -->
+<!--    <p>{{goals.statement1}}</p>-->
+<!--    -->
+<!--    <canvas id="pie" class="chart chart-doughnut"-->
+<!--        chart-data="data1" chart-labels="labels1">-->
+<!--    </canvas>-->
+<!--    -->
+<!--    <div class="donut-inner">-->
+<!--        <h4>{{goals.percent1}}% </h4>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div class="col">-->
+<!--    -->
+<!--    <p>{{goals.statement2}}</p>-->
+<!--    -->
+<!--    <canvas id="pie" class="chart chart-doughnut"-->
+<!--        chart-data="data1" chart-labels="labels1">-->
+<!--    </canvas>-->
+<!--    -->
+<!--    <div class="donut-inner">-->
+<!--        <h4>{{goals.percent2}}% </h4>-->
+<!--    </div>-->
+<!--</div>-->
+<!---->
+
+
             </div>
             
             

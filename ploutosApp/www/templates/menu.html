@@ -49,12 +49,12 @@
                     <img style="display:inline;" src="img/safe.png" height="25" width="25"/>
                     <h3>Home</h3>
                 </ion-item>
-                <ion-item menu-close href="#/app/alerts" class="sidebar-cell">
+                <ion-item menu-close class="sidebar-cell">
                     <img style="display:inline;" src="img/alert.png" height="25" width="25"/>
                     
                     <h3>Alerts</h3>
                     <ion-list class="sidebar-alerts">
-                        <ion-item ng-repeat="alert in alerts" href="#/app/alerts/{{alert.id}}" class="sidebar-alert">
+                        <ion-item ng-repeat="alert in alerts"  class="sidebar-alert">
                             <p>{{alert.title}}</p>{{alert.due}}
                         </ion-item>
                     </ion-list>
@@ -64,7 +64,7 @@
                     <img style="display:inline;" src="img/cards.png" height="25" width="25"/>
                     <h3 style="display:inline; margin-left: 4px;">My Accounts</h3>
                     <ion-list class="sidebar-alerts">
-                        <ion-item ng-repeat="account in accounts" href="#/app/accounts/{{account.id}}" class="sidebar-alert">
+                        <ion-item ng-repeat="account in accounts" class="sidebar-alert">
                             <p>{{account.title}}</p> ${{account.balance}}
                         </ion-item>
                         <div class="item item-divider">
@@ -73,7 +73,7 @@
                             </ion-list>
                             </ion-item>
                 
-                <ion-item menu-close href="#/app/alerts" class="sidebar-cell">
+                <ion-item menu-close  class="sidebar-cell">
                     <img style="display:inline;" src="img/bill.png" height="25" width="25"/>
                     
                     <h3>Upcoming Bills</h3>
@@ -113,7 +113,7 @@
         </ion-header-bar>
         <ion-content>
             <ion-list>
-                <ion-item menu-close href="#/app/friends">
+                <ion-item menu-close >
                     <h3>Top Friends</h3>
                     <ion-list class="sidebar-alerts">
                         
@@ -149,7 +149,7 @@
                         </div>
                         </ion-item>
                 
-                <ion-item menu-close href="#/app/alerts">
+                <ion-item menu-close>
                     <h3>Community Trends</h3>
                     <ion-list class="sidebar-alerts">
                         <p style="height: 100px; width: 200px; text-aligh: center">
